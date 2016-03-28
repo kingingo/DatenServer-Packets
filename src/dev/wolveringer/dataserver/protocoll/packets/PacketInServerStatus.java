@@ -1,8 +1,8 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
+import dev.wolveringer.dataserver.gamestats.GameState;
 import dev.wolveringer.dataserver.gamestats.GameType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.dataserver.protocoll.packets.PacketInServerStatus.GameState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,21 +12,6 @@ import lombok.NoArgsConstructor;
 @Getter
 public class PacketInServerStatus extends Packet{
 	private int bitmask = 0; //TODO minimize data
-
-	public static enum GameState {
-		Laden("Laden"), LobbyPhase("LobbyPhase"), SchutzModus("SchutzModus"), DeathMatch("DeathMatch"), StartDeathMatch("StartDeathMatch"), StartGame("StartGame"), InGame("InGame"), Restart("Restart"), MultiGame("MultiGame"), NONE("NONE");
-
-		String state;
-
-		private GameState(String state) {
-			this.state = state;
-		}
-
-		public String string() {
-			return state;
-		}
-
-	}
 
 	private int players;
 	private int maxPlayers;

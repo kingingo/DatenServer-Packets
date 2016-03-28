@@ -3,8 +3,8 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.util.ArrayList;
 import java.util.List;
 
+import dev.wolveringer.dataserver.gamestats.GameState;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.dataserver.protocoll.packets.PacketInServerStatus.GameState;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
