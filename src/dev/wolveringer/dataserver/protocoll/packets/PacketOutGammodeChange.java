@@ -9,14 +9,17 @@ import lombok.Getter;
 @Getter
 public class PacketOutGammodeChange extends Packet{
 	private GameType game;
+	private String subType;
 	
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeByte(game.ordinal());
+		buffer.writeString(subType);
 	}
 	
 	@Override
 	public void read(DataBuffer buffer) {
 		game = GameType.values()[buffer.readInt()];
+		subType = buffer.readString();
 	}
 }

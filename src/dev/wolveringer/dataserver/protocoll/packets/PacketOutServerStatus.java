@@ -8,10 +8,12 @@ import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
+@Setter
 public class PacketOutServerStatus extends Packet{
 	public static enum Action {
 		SERVER,
