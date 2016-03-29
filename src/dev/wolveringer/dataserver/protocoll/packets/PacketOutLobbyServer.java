@@ -12,6 +12,7 @@ public class PacketOutLobbyServer extends Packet{
 	@Getter
 	public static class ServerKey {
 		private String serverId;
+		private String serverSubId;
 		private int player;
 		private int maxPlayer;
 		private String mots;
@@ -33,7 +34,7 @@ public class PacketOutLobbyServer extends Packet{
 			GameType game = GameType.values()[buffer.readByte()];
 			ServerKey[] servers = new ServerKey[buffer.readInt()];
 			for (int j = 0; j < servers.length; j++) {
-				servers[j] = new ServerKey(buffer.readString(), buffer.readInt(), buffer.readInt(), buffer.readString());
+				servers[j] = new ServerKey(buffer.readString(),buffer.readString(), buffer.readInt(), buffer.readInt(), buffer.readString());
 			}
 			response[i] = new GameServers(game, servers);
 		}
@@ -46,6 +47,7 @@ public class PacketOutLobbyServer extends Packet{
 			buffer.writeInt(response[i].servers.length);
 			for (int j = 0; j < response[i].servers.length; j++) {
 				buffer.writeString(response[i].servers[j].serverId);
+				buffer.writeString(response[i].servers[j].serverSubId);
 				buffer.writeInt(response[i].servers[j].player);
 				buffer.writeInt(response[i].servers[j].maxPlayer);
 				buffer.writeString(response[i].servers[j].mots);
