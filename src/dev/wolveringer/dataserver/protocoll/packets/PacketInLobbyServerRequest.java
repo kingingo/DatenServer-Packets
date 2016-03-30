@@ -5,6 +5,7 @@ import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Getter
 @NoArgsConstructor
@@ -12,6 +13,7 @@ import lombok.NoArgsConstructor;
 public class PacketInLobbyServerRequest extends Packet{
 	@AllArgsConstructor
 	@Getter
+	@Setter
 	public static class GameRequest {
 		private GameType game;
 		private int maxServers;

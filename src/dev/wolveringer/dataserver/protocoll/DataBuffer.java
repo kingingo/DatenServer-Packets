@@ -1,5 +1,6 @@
 package dev.wolveringer.dataserver.protocoll;
 
+import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -18,8 +19,14 @@ import io.netty.buffer.Unpooled;
 public class DataBuffer extends ByteBuf {
 	private ByteBuf handle;
 
-	public DataBuffer(ByteBuf buffer) {
-		handle = buffer;
+	public DataBuffer(DataInputStream stream) throws IOException {
+		handle = Unpooled.buffer(stream.available());
+		
+		byte[] buffer = new byte[8192];
+		int bytesRead;
+		while ((bytesRead = stream.read(buffer)) != -1) {
+			handle.writeBytes(buffer, 0, bytesRead);
+		}
 	}
 
 	public DataBuffer() {
@@ -32,7 +39,7 @@ public class DataBuffer extends ByteBuf {
 
 	public String readString() {
 		int length = readInt();
-		if(length == -1)
+		if (length == -1)
 			return null;
 		byte[] buffer = new byte[length];
 		readBytes(buffer);
@@ -47,11 +54,12 @@ public class DataBuffer extends ByteBuf {
 			writeInt(-1);
 		return this;
 	}
-	
-	public UUID readUUID(){
+
+	public UUID readUUID() {
 		return new UUID(readLong(), readLong());
 	}
-	public DataBuffer writeUUID(UUID uuid){
+
+	public DataBuffer writeUUID(UUID uuid) {
 		writeLong(uuid.getMostSignificantBits());
 		writeLong(uuid.getLeastSignificantBits());
 		return this;
@@ -557,8 +565,9 @@ public class DataBuffer extends ByteBuf {
 		return handle.writableBytes();
 	}
 
-	public ByteBuf writeBoolean(boolean arg0) {
-		return handle.writeBoolean(arg0);
+	public DataBuffer writeBoolean(boolean arg0) {
+		handle.writeBoolean(arg0);
+		return this;
 	}
 
 	public DataBuffer writeByte(int arg0) {
@@ -610,8 +619,9 @@ public class DataBuffer extends ByteBuf {
 		return handle.writeFloat(arg0);
 	}
 
-	public ByteBuf writeInt(int arg0) {
-		return handle.writeInt(arg0);
+	public DataBuffer writeInt(int arg0) {
+		handle.writeInt(arg0);
+		return this;
 	}
 
 	public ByteBuf writeLong(long arg0) {
