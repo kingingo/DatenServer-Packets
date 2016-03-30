@@ -8,8 +8,10 @@ import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gamestats.Statistic;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class PacketOutStats extends Packet{
 	private UUID player;

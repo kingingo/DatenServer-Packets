@@ -6,7 +6,9 @@ import dev.wolveringer.dataserver.ban.BanEntity;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class PacketOutBanStats extends Packet{

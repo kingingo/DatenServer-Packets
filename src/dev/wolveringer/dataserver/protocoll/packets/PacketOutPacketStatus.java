@@ -5,8 +5,10 @@ import java.util.UUID;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
 
+@NoArgsConstructor
 public class PacketOutPacketStatus extends Packet {
 	@AllArgsConstructor
 	public static class Error {

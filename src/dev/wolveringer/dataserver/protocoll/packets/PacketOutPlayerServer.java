@@ -5,7 +5,9 @@ import java.util.UUID;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @AllArgsConstructor
 public class PacketOutPlayerServer extends Packet{
 	@Getter

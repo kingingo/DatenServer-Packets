@@ -20,7 +20,7 @@ public abstract class Packet {
 	
 	public static Packet createPacket(int id, DataBuffer buffer,PacketDirection direction) {
 		try {
-			Constructor<? extends Packet> c = clientBoundedPackets[id];
+			Constructor<? extends Packet> c = direction == PacketDirection.TO_SERVER ? serverBoundedPackets[id] : clientBoundedPackets[id];
 			if (c != null) {
 				Packet packet = c.newInstance();
 				packet.packetUUID = buffer.readUUID();
@@ -36,7 +36,7 @@ public abstract class Packet {
 
 	public static int getPacketId(Packet packet,PacketDirection direction) {
 		int i = 0;
-		for (Constructor<?> c : serverBoundedPackets) {
+		for (Constructor<?> c : direction == PacketDirection.TO_SERVER ? serverBoundedPackets : clientBoundedPackets) {
 			if (c != null)
 				if (c.getDeclaringClass().equals(packet.getClass()))
 					return i;
@@ -62,8 +62,8 @@ public abstract class Packet {
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_CLIENT);
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_SERVER);
 		
-		registerPacket(0x00, PacketHandschakeInStart.class, PacketDirection.TO_SERVER);
 		
+		registerPacket(0x00, PacketHandschakeInStart.class, PacketDirection.TO_SERVER);
 		registerPacket(0x01, PacketInBanStatsRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x02, PacketInChangePlayerSettings.class, PacketDirection.TO_SERVER);
 		registerPacket(0x03, PacketInPlayerSettingsRequest.class, PacketDirection.TO_SERVER);
@@ -86,6 +86,7 @@ public abstract class Packet {
 		registerPacket(0x14, PacketInTopTenRequest.class, PacketDirection.TO_SERVER);
 		
 		registerPacket(0xF0, PacketOutPacketStatus.class, PacketDirection.TO_CLIENT);
+		
 		registerPacket(0x00, PacketOutHandschakeAccept.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x01, PacketOutStats.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x02, PacketOutPlayerSettings.class, PacketDirection.TO_CLIENT);
