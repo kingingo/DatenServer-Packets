@@ -27,7 +27,7 @@ public class PacketServerMessage extends Packet{
 		this.channel = channel;
 		this.targets = new Target[]{new Target(target, null)};
 		this.message = new byte[message.writerIndex()];
-		System.arraycopy(message.array(), 0, message, 0, message.writerIndex());
+		System.arraycopy(message.array(), 0, this.message, 0, message.writerIndex());
 	}
 	
 	@Getter

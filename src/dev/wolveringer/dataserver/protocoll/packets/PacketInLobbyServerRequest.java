@@ -32,7 +32,11 @@ public class PacketInLobbyServerRequest extends Packet{
 	public void write(DataBuffer buffer) {
 		buffer.writeByte(request.length);
 		for(GameRequest r : request){
-			buffer.writeByte(r.game.ordinal());
+			if(r == null)
+				throw new NullPointerException("GameRequest is null!");
+			if(r.getGame() == null)
+				throw new NullPointerException("GameRequest->getGame() is null!");
+			buffer.writeByte(r.getGame().ordinal());
 			buffer.writeInt(r.getMaxServers());
 		}
 	}
