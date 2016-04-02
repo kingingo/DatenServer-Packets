@@ -84,6 +84,8 @@ public abstract class Packet {
 		registerPacket(0x12, PacketSettingUpdate.class, PacketDirection.TO_SERVER);
 		registerPacket(0x13, PacketInLobbyServerRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x14, PacketInTopTenRequest.class, PacketDirection.TO_SERVER);
+		registerPacket(0x15, PacketSkinRequest.class, PacketDirection.TO_SERVER);
+		registerPacket(0x16, PacketSkinSet.class, PacketDirection.TO_SERVER);
 		
 		registerPacket(0xF0, PacketOutPacketStatus.class, PacketDirection.TO_CLIENT);
 		
@@ -103,6 +105,7 @@ public abstract class Packet {
 		registerPacket(0x0D, PacketSettingUpdate.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x0E, PacketOutLobbyServer.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x0F, PacketOutTopTen.class, PacketDirection.TO_CLIENT);
+		registerPacket(0x10, PacketSkinData.class, PacketDirection.TO_CLIENT);
 		
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_CLIENT);
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_SERVER);

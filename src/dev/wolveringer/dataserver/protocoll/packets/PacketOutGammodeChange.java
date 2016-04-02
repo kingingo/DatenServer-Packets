@@ -21,7 +21,7 @@ public class PacketOutGammodeChange extends Packet{
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		game = GameType.values()[buffer.readInt()];
+		game = GameType.values()[buffer.readByte()];
 		subType = buffer.readString();
 	}
 }

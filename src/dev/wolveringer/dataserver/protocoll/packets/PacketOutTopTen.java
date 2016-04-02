@@ -1,5 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
+import java.util.Arrays;
+
 import dev.wolveringer.dataserver.gamestats.GameType;
 import dev.wolveringer.dataserver.gamestats.StatsKey;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
@@ -17,6 +19,7 @@ public class PacketOutTopTen extends Packet{
 		private String player;
 		private String topValue;
 	}
+	
 	private GameType game;
 	private StatsKey condition;
 	private RankInformation[] ranks;
@@ -32,11 +35,15 @@ public class PacketOutTopTen extends Packet{
 	}
 	public void write(DataBuffer buffer) {
 		buffer.writeByte(game.ordinal());
-		buffer.writeByte(game.ordinal());
+		buffer.writeByte(condition.ordinal());
 		buffer.writeInt(ranks.length);
 		for (int i = 0; i < ranks.length; i++) {
 			buffer.writeString(ranks[i].player);
 			buffer.writeString(ranks[i].topValue);
 		}
-	};
+	}
+	@Override
+	public String toString() {
+		return "PacketOutTopTen [game=" + game + ", condition=" + condition + ", ranks=" + Arrays.toString(ranks) + "]";
+	}
 }

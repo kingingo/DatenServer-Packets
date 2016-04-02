@@ -43,13 +43,13 @@ public class DataBuffer extends ByteBuf {
 			return null;
 		byte[] buffer = new byte[length];
 		readBytes(buffer);
-		return new String(buffer, 0, buffer.length);
+		return new String(buffer, 0, buffer.length, Charset.forName("UTF-8"));
 	}
 
 	public DataBuffer writeString(String s) {
 		if (s != null) {
-			writeInt(s.getBytes().length);
-			writeBytes(s.getBytes());
+			writeInt(s.getBytes(Charset.forName("UTF-8")).length);
+			writeBytes(s.getBytes(Charset.forName("UTF-8")));
 		} else
 			writeInt(-1);
 		return this;
