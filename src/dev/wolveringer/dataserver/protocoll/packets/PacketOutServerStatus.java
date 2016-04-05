@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import dev.wolveringer.dataserver.gamestats.GameState;
+import dev.wolveringer.dataserver.gamestats.GameType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,10 +19,12 @@ public class PacketOutServerStatus extends Packet{
 	public static enum Action {
 		SERVER,
 		BUNGEECORD,
-		GENERAL;
+		GENERAL,
+		GAMETYPE;
 	}
 	
 	private Action action;
+	private GameType[] games;
 	private String value;
 	private String serverId;
 	private boolean visiable;
@@ -33,7 +36,13 @@ public class PacketOutServerStatus extends Packet{
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeByte(action.ordinal());
-		buffer.writeString(value);
+		if(action == Action.BUNGEECORD || action == Action.SERVER)
+			buffer.writeString(value);
+		else if(action == Action.GAMETYPE){
+			buffer.writeByte(games.length);
+			for(int i = 0;i<games.length;i++)
+				buffer.writeByte(games[i].ordinal());
+		}
 		
 		buffer.writeString(serverId);
 		buffer.writeBoolean(visiable);
@@ -51,7 +60,13 @@ public class PacketOutServerStatus extends Packet{
 	@Override
 	public void read(DataBuffer buffer) {
 		this.action = Action.values()[buffer.readByte()];
-		this.value = buffer.readString();
+		if(action == Action.BUNGEECORD || action == Action.SERVER)
+			this.value = buffer.readString();
+		else if(action == Action.GAMETYPE){
+			games = new GameType[buffer.readByte()];
+			for(int i = 0;i<games.length;i++)
+				games[i] = GameType.values()[buffer.readByte()];
+		}
 		
 		this.serverId = buffer.readString();
 		this.visiable = buffer.readBoolean();

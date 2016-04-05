@@ -15,12 +15,14 @@ public class PacketSkinRequest extends Packet {
 		UUID, NAME, FROM_PLAYER;
 	}
 
+	private UUID requestUUID;
 	private Type type;
 	private String name;
 	private UUID uuid;
 
 	@Override
 	public void write(DataBuffer buffer) {
+		buffer.writeUUID(requestUUID);
 		buffer.writeByte(type.ordinal());
 		switch (type) {
 		case FROM_PLAYER:
@@ -36,6 +38,7 @@ public class PacketSkinRequest extends Packet {
 
 	@Override
 	public void read(DataBuffer buffer) {
+		requestUUID = buffer.readUUID();
 		type = Type.values()[buffer.readByte()];
 		switch (type) {
 		case FROM_PLAYER:
