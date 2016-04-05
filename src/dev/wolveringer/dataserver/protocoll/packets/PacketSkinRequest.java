@@ -15,41 +15,56 @@ public class PacketSkinRequest extends Packet {
 		UUID, NAME, FROM_PLAYER;
 	}
 
-	private UUID requestUUID;
-	private Type type;
-	private String name;
-	private UUID uuid;
+	@AllArgsConstructor
+	@Getter
+	public static class SkinRequest {
+		private Type type;
+		private String name;
+		private UUID uuid;
+	}
 
+	private UUID requestUUID;
+	private SkinRequest[] requests;
+	
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(requestUUID);
-		buffer.writeByte(type.ordinal());
-		switch (type) {
-		case FROM_PLAYER:
-		case UUID:
-			buffer.writeUUID(uuid);
-			break;
-		case NAME:
-			buffer.writeString(name);
-		default:
-			break;
+		buffer.writeInt(requests.length);
+		for(SkinRequest r : requests){
+			buffer.writeByte(r.getType().ordinal());
+			switch (r.getType()) {
+			case FROM_PLAYER:
+			case UUID:
+				buffer.writeUUID(r.getUuid());
+				break;
+			case NAME:
+				buffer.writeString(r.getName());
+			default:
+				break;
+			}
 		}
 	}
 
 	@Override
 	public void read(DataBuffer buffer) {
 		requestUUID = buffer.readUUID();
-		type = Type.values()[buffer.readByte()];
-		switch (type) {
-		case FROM_PLAYER:
-		case UUID:
-			uuid = buffer.readUUID();
-			break;
-		case NAME:
-			name = buffer.readString();
-			break;
-		default:
-			break;
+		requests = new SkinRequest[buffer.readInt()];
+		for(int i = 0;i<requests.length;i++){
+			Type type = Type.values()[buffer.readByte()];
+			UUID uuid = null;
+			String name = null;
+			switch (type) {
+			case FROM_PLAYER:
+			case UUID:
+				uuid = buffer.readUUID();
+				break;
+			case NAME:
+				name = buffer.readString();
+				break;
+			default:
+				break;
+			}
+			requests[i] = new SkinRequest(type, name, uuid);
 		}
 	}
 
