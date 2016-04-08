@@ -1,6 +1,5 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.bukkit.permissions.PermissionType;
 import dev.wolveringer.client.connection.ClientType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.Getter;

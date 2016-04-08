@@ -17,6 +17,11 @@ public class PacketSkinData extends Packet {
 	@Getter
 	public static class SkinResponse {
 		private Skin skin;
+
+		@Override
+		public String toString() {
+			return "SkinResponse [skin=" + skin + "]";
+		}
 	}
 	
 	private UUID requestUUID;
@@ -30,8 +35,8 @@ public class PacketSkinData extends Packet {
 			Skin skin;
 			if(buffer.readBoolean()){
 				skin = new SteveSkin();
-				return;
 			}
+			else
 			skin = new Skin(buffer.readString(), buffer.readString());
 			reponse[i] = new SkinResponse(skin);
 		}

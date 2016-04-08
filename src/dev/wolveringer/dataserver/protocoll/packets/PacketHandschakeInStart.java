@@ -17,6 +17,9 @@ public class PacketHandschakeInStart extends Packet{
 	private byte[] password;
 	@Getter
 	private ClientType type;
+	@Getter
+	private String protocollVersion;
+	
 	@Override
 	public void read(DataBuffer buffer) {
 		host = buffer.readString();
@@ -24,6 +27,7 @@ public class PacketHandschakeInStart extends Packet{
 		password = new byte[buffer.readByte()];
 		buffer.readBytes(password);
 		type = ClientType.values()[buffer.readByte()];
+		protocollVersion = buffer.readString();
 	}
 	
 	@Override
@@ -33,5 +37,6 @@ public class PacketHandschakeInStart extends Packet{
 		buffer.writeByte(password.length);
 		buffer.writeBytes(password);
 		buffer.writeByte(type.ordinal());
+		buffer.writeString(protocollVersion);
 	}
 }

@@ -7,6 +7,17 @@ import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.Getter;
 
 public abstract class Packet {
+	private static final String DEFAULT_PROTOCOLL_VERSION = "undefined";
+	public static final String PROTOCOLL_VERSION;
+	
+	static {
+		String newVersion = "ca4bd3e0bab5cba7df7fd67114cd1e2225c09231"; //Will replaced by maven
+		if(newVersion.length() >= 9)
+			if(newVersion.substring(1, 9).equalsIgnoreCase("buildId"))
+				newVersion =  DEFAULT_PROTOCOLL_VERSION;
+		PROTOCOLL_VERSION = newVersion;
+	}
+	
 	public static enum PacketDirection {
 		TO_CLIENT,
 		TO_SERVER;
@@ -86,6 +97,8 @@ public abstract class Packet {
 		registerPacket(0x14, PacketInTopTenRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x15, PacketSkinRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x16, PacketSkinSet.class, PacketDirection.TO_SERVER);
+		registerPacket(0x17, PacketEventCondition.class, PacketDirection.TO_SERVER);
+		registerPacket(0x18, PacketEventTypeSettings.class, PacketDirection.TO_SERVER);
 		
 		registerPacket(0xF0, PacketOutPacketStatus.class, PacketDirection.TO_CLIENT);
 		
@@ -106,6 +119,7 @@ public abstract class Packet {
 		registerPacket(0x0E, PacketOutLobbyServer.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x0F, PacketOutTopTen.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x10, PacketSkinData.class, PacketDirection.TO_CLIENT);
+		registerPacket(0x11, PacketEventFire.class, PacketDirection.TO_CLIENT);
 		
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_CLIENT);
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_SERVER);
