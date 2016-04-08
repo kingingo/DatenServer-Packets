@@ -1,5 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
+import java.util.UUID;
+
 import dev.wolveringer.client.connection.ClientType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.Getter;
@@ -21,10 +23,15 @@ public class PacketForward extends Packet{
 			throw new RuntimeException("Packet not found");
 		DataBuffer buffer = new DataBuffer();
 		buffer.writeInt(Packet.getPacketId(packet,PacketDirection.TO_CLIENT));
+		buffer.writeUUID(UUID.randomUUID());
 		packet.write(buffer);
 		data = new byte[buffer.writerIndex()];
 		System.arraycopy(buffer.array(), 0, data, 0, buffer.writerIndex());
 		buffer.release();
+		this.target = target;
+		
+		if(target == null)
+			throw new NullPointerException();
 	}
 	
 	public PacketForward(ClientType target,Packet packet){
@@ -32,10 +39,15 @@ public class PacketForward extends Packet{
 			throw new RuntimeException("Packet not found");
 		DataBuffer buffer = new DataBuffer();
 		buffer.writeInt(Packet.getPacketId(packet,PacketDirection.TO_CLIENT));
+		buffer.writeUUID(UUID.randomUUID());
 		packet.write(buffer);
 		data = new byte[buffer.writerIndex()];
 		System.arraycopy(buffer.array(), 0, data, 0, buffer.writerIndex());
 		buffer.release();
+		this.ctarget = target;
+		
+		if(ctarget == null)
+			throw new NullPointerException();
 	}
 	
 	
@@ -61,6 +73,10 @@ public class PacketForward extends Packet{
 	}
 	
 	public Packet getPacket(){
+		if(packet == null){
+			DataBuffer buff = new DataBuffer(data);
+			packet = Packet.createPacket(buff.readInt(), buff, PacketDirection.TO_CLIENT);
+		}
 		return packet;
 	}
 }

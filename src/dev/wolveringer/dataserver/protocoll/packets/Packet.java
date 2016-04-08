@@ -7,15 +7,10 @@ import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.Getter;
 
 public abstract class Packet {
-	private static final String DEFAULT_PROTOCOLL_VERSION = "undefined";
 	public static final String PROTOCOLL_VERSION;
 	
 	static {
-		String newVersion = "ca4bd3e0bab5cba7df7fd67114cd1e2225c09231"; //Will replaced by maven
-		if(newVersion.length() >= 9)
-			if(newVersion.substring(1, 9).equalsIgnoreCase("buildId"))
-				newVersion =  DEFAULT_PROTOCOLL_VERSION;
-		PROTOCOLL_VERSION = newVersion;
+		PROTOCOLL_VERSION = PacketVersion.PROTOCOLL_VERSION;
 	}
 	
 	public static enum PacketDirection {
@@ -124,8 +119,10 @@ public abstract class Packet {
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_CLIENT);
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_SERVER);
 		
-		registerPacket(0xFE, PacketPingPong.class, PacketDirection.TO_CLIENT);
-		registerPacket(0xFE, PacketPingPong.class, PacketDirection.TO_SERVER);
+		registerPacket(0xFE, PacketPing.class, PacketDirection.TO_CLIENT);
+		registerPacket(0xFE, PacketPing.class, PacketDirection.TO_SERVER);
+		registerPacket(0xFD, PacketPong.class, PacketDirection.TO_CLIENT);
+		registerPacket(0xFD, PacketPong.class, PacketDirection.TO_SERVER);
 	}
 
 	@Getter

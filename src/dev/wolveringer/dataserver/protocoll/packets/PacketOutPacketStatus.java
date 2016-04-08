@@ -16,6 +16,11 @@ public class PacketOutPacketStatus extends Packet {
 		private int id;
 		@Getter
 		private String message;
+		
+		@Override
+		public String toString() {
+			return "Error: id=" + id + " Message=" + message + "";
+		}
 	}
 
 	@Getter

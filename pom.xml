@@ -12,7 +12,8 @@
 	</scm>
 	
 	<properties>
-		 <protocoll.version>src/dev/wolveringer/dataserver/protocoll/packets/Packet.java</protocoll.version>
+		 <protocoll.version.input>src/dev/wolveringer/dataserver/protocoll/packets/PacketVersionTemplate.java</protocoll.version.input>
+		 <protocoll.version.output>src/dev/wolveringer/dataserver/protocoll/packets/PacketVersion.java</protocoll.version.output>
 	</properties>
 	
 	<build>
@@ -70,13 +71,17 @@
 					</execution>
 				</executions>
 				<configuration>
-					<file>${protocoll.version}</file>
-					<outputFile>${protocoll.version}</outputFile>
+					<file>${protocoll.version.input}</file>
+					<outputFile>${protocoll.version.output}</outputFile>
 					<replacements>
 						<replacement>
 							<token>@buildId@</token>
 							<value>${buildNumber}</value>
-						</replacement>
+						</replacement> <!-- PacketVersionTemplate -->
+						<replacement>
+							<token>PacketVersionTemplate</token>
+							<value>PacketVersion</value>
+						</replacement> <!-- PacketVersionTemplate -->
 					</replacements>
 				</configuration>
 			</plugin>

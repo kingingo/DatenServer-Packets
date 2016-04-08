@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Getter
-public class PacketPingPong extends Packet{
+public class PacketPong extends Packet{
 	private long time;
 	
 	@Override
