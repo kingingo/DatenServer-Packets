@@ -34,6 +34,11 @@ public class PacketOutPacketStatus extends Packet {
 		this.errors = errors;
 	}
 
+	public PacketOutPacketStatus(UUID receved, Error... errors) {
+		this.packetId = receved;
+		this.errors = errors;
+	}
+	
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(packetId);
