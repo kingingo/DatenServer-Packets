@@ -16,32 +16,32 @@ public class PacketSkinSet extends Packet {
 		private DataType() {
 		}
 	}
-	private UUID player;
+	private int playerId;
 	private DataType type;
 	private String skinName;
 	private UUID skinUUID;
 	private String rawValue;
 	private String signature;
 
-	public PacketSkinSet(UUID player, Skin skin) {
+	public PacketSkinSet(int player, Skin skin) {
 		this(player, skin.getRawData(), skin.getSignature());
 	}
 
-	public PacketSkinSet(UUID player, UUID target) {
+	public PacketSkinSet(int player, UUID target) {
 		type = DataType.UUID;
-		this.player = player;
+		this.playerId = player;
 		this.skinUUID = target;
 	}
 
-	public PacketSkinSet(UUID player, String target) {
+	public PacketSkinSet(int player, String target) {
 		type = DataType.NAME;
-		this.player = player;
+		this.playerId = player;
 		this.skinName = target;
 	}
 
-	public PacketSkinSet(UUID player, String rawValue, String signature) {
+	public PacketSkinSet(int player, String rawValue, String signature) {
 		type = DataType.PROPS;
-		this.player = player;
+		this.playerId = player;
 		this.rawValue = rawValue;
 		this.signature = signature;
 	}
@@ -51,14 +51,14 @@ public class PacketSkinSet extends Packet {
 	 * @param player
 	 *	Remove costum skin!
 	 */
-	public PacketSkinSet(UUID player) {
+	public PacketSkinSet(int player) {
 		type = DataType.NONE;
-		this.player = player;
+		this.playerId = player;
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.writeUUID(player);
+		buffer.writeInt(playerId);
 		buffer.writeByte(type.ordinal());
 		switch (type) {
 		case NAME:
@@ -78,7 +78,7 @@ public class PacketSkinSet extends Packet {
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		player = buffer.readUUID();
+		playerId = buffer.readInt();
 		type = DataType.values()[buffer.readByte()];
 		switch (type) {
 		case NAME:

@@ -73,14 +73,14 @@ public abstract class Packet {
 		registerPacket(0x01, PacketInBanStatsRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x02, PacketInChangePlayerSettings.class, PacketDirection.TO_SERVER);
 		registerPacket(0x03, PacketInPlayerSettingsRequest.class, PacketDirection.TO_SERVER);
-		registerPacket(0x04, PacketInConnectionStatus.class,  PacketDirection.TO_SERVER);
+		//registerPacket(0x04, PacketInConnectionStatus.class,  PacketDirection.TO_SERVER);
 		registerPacket(0x05, PacketInServerSwitch.class, PacketDirection.TO_SERVER);
 		registerPacket(0x06, PacketInStatsEdit.class, PacketDirection.TO_SERVER);
 		registerPacket(0x07, PacketInStatsRequest.class, PacketDirection.TO_SERVER);
-		registerPacket(0x08, PacketInUUIDRequest.class, PacketDirection.TO_SERVER);
+		//registerPacket(0x08, PacketInUUIDRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x09, PacketInGetServer.class, PacketDirection.TO_SERVER);
 		registerPacket(0x0A, PacketInBanPlayer.class, PacketDirection.TO_SERVER);
-		registerPacket(0x0B, PacketInNameRequest.class, PacketDirection.TO_SERVER);
+		//registerPacket(0x0B, PacketInNameRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x0C, PacketServerAction.class, PacketDirection.TO_SERVER);
 		registerPacket(0x0D, PacketInServerStatus.class, PacketDirection.TO_SERVER);
 		registerPacket(0x0E, PacketInServerStatusRequest.class, PacketDirection.TO_SERVER);
@@ -95,16 +95,17 @@ public abstract class Packet {
 		registerPacket(0x17, PacketEventCondition.class, PacketDirection.TO_SERVER);
 		registerPacket(0x18, PacketEventTypeSettings.class, PacketDirection.TO_SERVER);
 		registerPacket(0x19, PacketLanguageRequest.class, PacketDirection.TO_SERVER);
+		registerPacket(0x1A, PacketPlayerIdRequest.class, PacketDirection.TO_SERVER);
 		
 		registerPacket(0xF0, PacketOutPacketStatus.class, PacketDirection.TO_CLIENT);
 		
 		registerPacket(0x00, PacketOutHandschakeAccept.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x01, PacketOutStats.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x02, PacketOutPlayerSettings.class, PacketDirection.TO_CLIENT);
-		registerPacket(0x03, PacketOutUUIDResponse.class, PacketDirection.TO_CLIENT);
+		//registerPacket(0x03, PacketOutUUIDResponse.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x04, PacketOutPlayerServer.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x05, PacketOutBanStats.class, PacketDirection.TO_CLIENT);
-		registerPacket(0x06, PacketOutNameResponse.class, PacketDirection.TO_CLIENT);
+		//registerPacket(0x06, PacketOutNameResponse.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x07, PacketServerAction.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x08, PacketOutServerStatus.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x09, PacketChatMessage.class, PacketDirection.TO_CLIENT);
@@ -117,6 +118,7 @@ public abstract class Packet {
 		registerPacket(0x10, PacketSkinData.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x11, PacketEventFire.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x12, PacketLanguageResponse.class, PacketDirection.TO_CLIENT);
+		registerPacket(0x13, PacketPlayerIdResponse.class, PacketDirection.TO_CLIENT);
 		
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_CLIENT);
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_SERVER);

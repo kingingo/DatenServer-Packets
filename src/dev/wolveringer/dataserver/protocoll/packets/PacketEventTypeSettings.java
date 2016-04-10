@@ -36,8 +36,10 @@ public class PacketEventTypeSettings extends Packet{
 		type = EventType.values()[buffer.readInt()];
 		active = buffer.readBoolean();
 		
-		if(active)
-			for(int i = 0;i<buffer.readInt();i++)
+		if(active){
+			int length = buffer.readInt();
+			for(int i = 0;i<length;i++)
 				conditions.add(EventConditions.readCondition(buffer));
+		}
 	}
 }

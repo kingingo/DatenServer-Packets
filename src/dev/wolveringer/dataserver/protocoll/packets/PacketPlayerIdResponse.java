@@ -2,28 +2,30 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.gamestats.GameType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
-public class PacketInStatsRequest extends Packet{
-	private int player;
-	private GameType game;
+public class PacketPlayerIdResponse extends Packet{
+	private UUID requestUUID;
+	private int[] ids;
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		player = buffer.readInt();
-		game = GameType.values()[buffer.readByte()];
+		requestUUID = buffer.readUUID();
+		ids = new int[buffer.readInt()];
+		for(int i = 0;i<ids.length;i++)
+			ids[i] = buffer.readInt();
 	}
-	
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.writeInt(player);
-		buffer.writeByte(game.ordinal());
+		buffer.writeUUID(requestUUID);
+		buffer.writeInt(ids.length);
+		for(int i : ids)
+			buffer.writeInt(i);
 	}
 }

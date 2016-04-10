@@ -21,6 +21,7 @@ public class PacketSkinRequest extends Packet {
 		private Type type;
 		private String name;
 		private UUID uuid;
+		private int playerId;
 	}
 
 	private UUID requestUUID;
@@ -34,6 +35,8 @@ public class PacketSkinRequest extends Packet {
 			buffer.writeByte(r.getType().ordinal());
 			switch (r.getType()) {
 			case FROM_PLAYER:
+				buffer.writeInt(r.getPlayerId());
+				break;
 			case UUID:
 				buffer.writeUUID(r.getUuid());
 				break;
@@ -53,8 +56,11 @@ public class PacketSkinRequest extends Packet {
 			Type type = Type.values()[buffer.readByte()];
 			UUID uuid = null;
 			String name = null;
+			int playerId = -1;
 			switch (type) {
 			case FROM_PLAYER:
+				playerId = buffer.readInt();
+				break;
 			case UUID:
 				uuid = buffer.readUUID();
 				break;
@@ -64,7 +70,7 @@ public class PacketSkinRequest extends Packet {
 			default:
 				break;
 			}
-			requests[i] = new SkinRequest(type, name, uuid);
+			requests[i] = new SkinRequest(type, name, uuid, playerId);
 		}
 	}
 

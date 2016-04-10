@@ -28,13 +28,13 @@ public class PacketInStatsEdit extends Packet {
 	}
 
 	@Getter
-	private UUID player;
+	private int player;
 	@Getter
 	private EditStats[] changes;
 
 	@Override
 	public void read(DataBuffer buffer) {
-		player = buffer.readUUID();
+		player = buffer.readInt();
 		changes = new EditStats[buffer.readByte()];
 
 		for (int i = 0; i < changes.length; i++) {
@@ -63,8 +63,7 @@ public class PacketInStatsEdit extends Packet {
 	
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.writeUUID(player);
-		
+		buffer.writeInt(player);
 		buffer.writeByte(changes.length);
 		for(EditStats stats : changes){
 			buffer.writeByte(stats.game.ordinal());

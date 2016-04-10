@@ -12,13 +12,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PacketInPlayerSettingsRequest extends Packet{
 	@Getter
-	private UUID player;
+	private int player;
 	@Getter
 	private Setting[] settings;
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		player = buffer.readUUID();
+		player = buffer.readInt();
 		settings = new Setting[buffer.readByte()];
 		for(int i = 0;i<settings.length;i++)
 			settings[i] = Setting.values()[buffer.readByte()];
@@ -26,7 +26,7 @@ public class PacketInPlayerSettingsRequest extends Packet{
 	
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.writeUUID(player);
+		buffer.writeInt(player);
 		buffer.writeByte(settings.length);
 		for(Setting s : settings)
 			buffer.writeByte(s.ordinal());
