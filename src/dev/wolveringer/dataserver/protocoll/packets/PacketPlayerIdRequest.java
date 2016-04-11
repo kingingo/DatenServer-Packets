@@ -30,7 +30,7 @@ public class PacketPlayerIdRequest extends Packet{
 			break;
 		case 1:
 			uuids = new UUID[buffer.readInt()];
-			for(int i = 0;i<names.length;i++)
+			for(int i = 0;i<uuids.length;i++)
 				uuids[i] = buffer.readUUID();
 			break;
 		default:
