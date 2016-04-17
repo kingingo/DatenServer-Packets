@@ -19,7 +19,9 @@ public class PacketServerAction extends Packet{
 	}
 	public static enum Action {
 		SEND,
-		KICK;
+		KICK,
+		RESTART,
+		STOP;
 	}
 	
 	@Getter
