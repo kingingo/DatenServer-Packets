@@ -15,6 +15,7 @@ public class PacketInServerStatusRequest extends Packet{
 	private String value;
 	private boolean player;
 	private GameType[] games;
+	
 	@Override
 	public void read(DataBuffer buffer) {
 		this.action = Action.values()[buffer.readByte()];
