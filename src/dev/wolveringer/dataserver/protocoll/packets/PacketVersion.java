@@ -5,7 +5,7 @@ public class PacketVersion {
 	public static final String PROTOCOLL_VERSION;
 	
 	static {
-		String newVersion = "3fc7178d9735d8c3e74676baf1dd994b39f42eac"; //Will replaced by maven
+		String newVersion = "523a7579938d3a2fef31034c6ddbd72363aac5f2"; //Will replaced by maven
 		if(newVersion.length() >= 9)
 			if(newVersion.substring(1, 9).equalsIgnoreCase("buildId"))
 				newVersion =  DEFAULT_PROTOCOLL_VERSION;

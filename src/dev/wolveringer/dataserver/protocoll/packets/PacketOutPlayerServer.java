@@ -11,19 +11,19 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class PacketOutPlayerServer extends Packet{
 	@Getter
-	private UUID player;
+	private int player;
 	@Getter
 	private String server;
 	
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.writeUUID(player);
+		buffer.writeInt(player);
 		buffer.writeString(server);
 	}
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		player = buffer.readUUID();
+		player = buffer.readInt();
 		server = buffer.readString();
 	}
 }
