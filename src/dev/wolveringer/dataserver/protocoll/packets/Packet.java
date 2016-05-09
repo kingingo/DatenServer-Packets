@@ -98,7 +98,8 @@ public abstract class Packet {
 		registerPacket(0x1A, PacketPlayerIdRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x1B, PacketReportRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x1C, PacketReportEdit.class, PacketDirection.TO_SERVER);
-		
+		registerPacket(0x1D, PacketBoosterStatusRequest.class, PacketDirection.TO_SERVER);
+		registerPacket(0x1E, PacketBoosterActive.class, PacketDirection.TO_SERVER);
 		
 		registerPacket(0xF0, PacketOutPacketStatus.class, PacketDirection.TO_CLIENT);
 		
@@ -123,6 +124,7 @@ public abstract class Packet {
 		registerPacket(0x12, PacketLanguageResponse.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x13, PacketPlayerIdResponse.class, PacketDirection.TO_CLIENT);
 		registerPacket(0x14, PacketReportResponse.class, PacketDirection.TO_CLIENT);
+		registerPacket(0x15, PacketBoosterStatusResponse.class, PacketDirection.TO_CLIENT);
 		
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_CLIENT);
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_SERVER);
