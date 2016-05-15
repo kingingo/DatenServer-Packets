@@ -4,7 +4,9 @@ import dev.wolveringer.booster.BoosterType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @AllArgsConstructor
 @Getter
 public class PacketBoosterStatusResponse extends Packet{

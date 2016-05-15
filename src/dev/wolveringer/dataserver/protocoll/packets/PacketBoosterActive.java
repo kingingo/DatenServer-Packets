@@ -4,8 +4,10 @@ import dev.wolveringer.booster.BoosterType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
 public class PacketBoosterActive extends Packet{
 	private int playerId;

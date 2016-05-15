@@ -2,8 +2,11 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import dev.wolveringer.booster.BoosterType;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
+@NoArgsConstructor
 @Getter
 public class PacketBoosterStatusRequest extends Packet{
 	private int playerId;
