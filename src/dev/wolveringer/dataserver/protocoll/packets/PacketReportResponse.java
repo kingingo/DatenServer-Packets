@@ -24,7 +24,7 @@ public class PacketReportResponse extends Packet{
 		for(int i = 0;i<entities.length;i++){
 			ArrayList<ReportWorker> workers = new ArrayList<>();
 			int reportId = buffer.readInt();
-			ReportEntity e = new ReportEntity(reportId, buffer.readInt(), buffer.readString(), buffer.readInt(), buffer.readString(), buffer.readString(), buffer.readLong(), buffer.readBoolean(), workers);
+			ReportEntity e = new ReportEntity(reportId, buffer.readInt(), buffer.readString(), buffer.readInt(), buffer.readString(), buffer.readString(), buffer.readLong(), buffer.readInt(), workers);
 			int length = buffer.readInt();
 			for(int j= 0;j<length;j++)
 				workers.add(new ReportWorker(reportId, buffer.readInt(), buffer.readLong(), buffer.readLong()));
@@ -44,7 +44,7 @@ public class PacketReportResponse extends Packet{
 			buffer.writeString(e.getReson());
 			buffer.writeString(e.getInfos());
 			buffer.writeLong(e.getTime());
-			buffer.writeBoolean(e.isOpen());
+			buffer.writeInt(e.getState());
 			buffer.writeInt(e.getWorkers().size());
 			for(ReportWorker r : e.getWorkers()){
 				buffer.writeInt(r.getPlayerId());
