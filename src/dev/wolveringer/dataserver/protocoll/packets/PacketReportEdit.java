@@ -2,7 +2,6 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
-import lombok.Builder;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -27,12 +26,10 @@ public class PacketReportEdit extends Packet{
 	public void read(DataBuffer buffer) {
 		edit =buffer.readEnum(EditKey.class);
 		value = buffer.readInt();
-		if(edit != EditKey.CLOSE){
-			value2 = buffer.readInt();
-			if(edit == EditKey.CREATE){
-				reson = buffer.readString();
-				info = buffer.readString();
-			}
+		value2 = buffer.readInt();
+		if(edit == EditKey.CREATE){
+			reson = buffer.readString();
+			info = buffer.readString();
 		}
 	}
 	
@@ -40,12 +37,10 @@ public class PacketReportEdit extends Packet{
 	public void write(DataBuffer buffer) {
 		buffer.writeEnum(edit);
 		buffer.writeInt(value);
-		if(edit != EditKey.CLOSE){
-			buffer.writeInt(value2);
-			if(edit == EditKey.CREATE){
-				buffer.writeString(reson);
-				buffer.writeString(info);
-			}
+		buffer.writeInt(value2);
+		if(edit == EditKey.CREATE){
+			buffer.writeString(reson);
+			buffer.writeString(info);
 		}
 	}
 }
