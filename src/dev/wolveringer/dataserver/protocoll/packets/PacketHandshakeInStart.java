@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-public class PacketHandschakeInStart extends Packet{
+public class PacketHandshakeInStart extends Packet{
 	@Getter
 	private String host;
 	@Getter

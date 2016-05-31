@@ -69,7 +69,7 @@ public abstract class Packet {
 		registerPacket(0xFF, PacketDisconnect.class, PacketDirection.TO_SERVER);
 		
 		
-		registerPacket(0x00, PacketHandschakeInStart.class, PacketDirection.TO_SERVER);
+		registerPacket(0x00, PacketHandshakeInStart.class, PacketDirection.TO_SERVER);
 		registerPacket(0x01, PacketInBanStatsRequest.class, PacketDirection.TO_SERVER);
 		registerPacket(0x02, PacketInChangePlayerSettings.class, PacketDirection.TO_SERVER);
 		registerPacket(0x03, PacketInPlayerSettingsRequest.class, PacketDirection.TO_SERVER);
