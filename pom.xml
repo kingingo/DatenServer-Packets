@@ -7,8 +7,7 @@
 	<version>0.0.1-SNAPSHOT</version>
 
 	<scm>
-		<connection>scm:git:https://gitlab.com/WolverinDEV/DatenServer-Packets.git</connection><!-- 
-			-Dmaven.scm.svn.config_directory=your_configuration_directory -->
+		<connection>scm:git:https://gitlab.com/WolverinDEV/DatenServer-Packets.git</connection>
 	</scm>
 	
 	<properties>
