@@ -65,6 +65,18 @@ public abstract class Packet {
 			e.printStackTrace();
 		}
 	}
+	protected static void registerPacket(int id,PacketDirection direction, Class<? extends Packet> packet) {
+		try {
+			if (direction == PacketDirection.TO_SERVER)
+				serverBoundedPackets[id] = packet.getConstructors().length == 1 ? (Constructor<? extends Packet>) packet.getConstructors()[0] : packet.getConstructor();
+			else
+				clientBoundedPackets[id] = packet.getConstructors().length == 1 ? (Constructor<? extends Packet>) packet.getConstructors()[0] : packet.getConstructor();
+		} catch (SecurityException e) {
+			e.printStackTrace();
+		} catch (NoSuchMethodException e) {
+			e.printStackTrace();
+		}
+	}
 
 	static {
 		registerPacket(PacketDirection.TO_SERVER, PacketDisconnect.class);
