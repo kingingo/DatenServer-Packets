@@ -68,8 +68,8 @@ public abstract class Packet {
 
 	static {
 		registerPacket(PacketDirection.TO_SERVER, PacketDisconnect.class);
-
 		registerPacket(PacketDirection.TO_SERVER, PacketHandshakeInStart.class);
+		
 		registerPacket(PacketDirection.TO_SERVER, PacketInBanStatsRequest.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketInChangePlayerSettings.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketInPlayerSettingsRequest.class);
@@ -97,8 +97,18 @@ public abstract class Packet {
 		registerPacket(PacketDirection.TO_SERVER, PacketReportEdit.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketBoosterStatusRequest.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketBoosterActive.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildInformationRequest.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildMemberRequest.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildMemeberAction.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildPermissionEdit.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildPermissionRequest.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildSarch.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildCostumDataAction.class);
+		
 		registerPacket(PacketDirection.TO_SERVER, PacketPing.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketPong.class);
+		
+		
 		
 		registerPacket(PacketDirection.TO_CLIENT, PacketDisconnect.class);
 		registerPacket(PacketDirection.TO_CLIENT, PacketOutHandschakeAccept.class);
@@ -123,6 +133,12 @@ public abstract class Packet {
 		registerPacket(PacketDirection.TO_CLIENT, PacketPlayerIdResponse.class);
 		registerPacket(PacketDirection.TO_CLIENT, PacketReportResponse.class);
 		registerPacket(PacketDirection.TO_CLIENT, PacketBoosterStatusResponse.class);
+		registerPacket(PacketDirection.TO_CLIENT, PacketGildPermissionResponse.class);
+		registerPacket(PacketDirection.TO_CLIENT, PacketGildMemberResponse.class);
+		registerPacket(PacketDirection.TO_CLIENT, PacketGildInformationResponse.class);
+		registerPacket(PacketDirection.TO_CLIENT, PacketGildSarchResponse.class);
+		registerPacket(PacketDirection.TO_CLIENT, PacketGildCostumDataResponse.class);
+		
 		registerPacket(PacketDirection.TO_CLIENT, PacketPing.class);
 		registerPacket(PacketDirection.TO_CLIENT, PacketPong.class);
 	}

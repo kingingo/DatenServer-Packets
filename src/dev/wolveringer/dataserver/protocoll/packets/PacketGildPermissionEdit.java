@@ -3,7 +3,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.util.UUID;
 
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.gilde.GileType;
+import dev.wolveringer.gilde.GildeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,11 +15,13 @@ public class PacketGildPermissionEdit extends Packet{
 	public static enum Action {
 		ADD_PERMISSION,
 		REMOVE_PERMISSION,
-		CREATE_GROUP;
+		CREATE_GROUP,
+		ADD_GROUP,
+		REMOVE_GROUP;
 	}
 	
 	private UUID gilde;
-	private GileType type;
+	private GildeType type;
 	private Action action;
 	private String group;
 	private String permission;
@@ -27,7 +29,7 @@ public class PacketGildPermissionEdit extends Packet{
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
-		type = buffer.readEnum(GileType.class);
+		type = buffer.readEnum(GildeType.class);
 		action = buffer.readEnum(Action.class);
 		permission = buffer.readString();
 	}

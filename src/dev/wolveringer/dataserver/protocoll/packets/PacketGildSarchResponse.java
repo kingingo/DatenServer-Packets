@@ -3,7 +3,6 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.util.UUID;
 
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.gilde.GildeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,18 +10,21 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class PacketGildMemberRequest extends Packet{
-	private UUID gilde;
-	private GildeType type;
+public class PacketGildSarchResponse extends Packet{
+	private UUID requested;
+	private String name;
+	private UUID uuid;
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		gilde = buffer.readUUID();
-		type = buffer.readEnum(GildeType.class);
+		requested = buffer.readUUID();
+		name = buffer.readString();
+		uuid = buffer.readUUID();
 	}
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.writeUUID(gilde);
-		buffer.writeEnum(type);
+		buffer.writeUUID(requested);
+		buffer.writeString(name);
+		buffer.writeUUID(uuid);
 	}
 }

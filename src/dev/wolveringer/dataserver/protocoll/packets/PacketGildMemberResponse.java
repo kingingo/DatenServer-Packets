@@ -3,7 +3,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.util.UUID;
 
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.gilde.GileType;
+import dev.wolveringer.gilde.GildeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,35 +14,43 @@ import lombok.NoArgsConstructor;
 public class PacketGildMemberResponse extends Packet{
 	@AllArgsConstructor
 	@Getter
-	private static class MemeberInformation {
+	public static class MemberInformation {
 		private int playerId;
-		private GileType[] member;
+		private GildeType[] member;
+		private String[] groups;
 	}
 	private UUID gilde;
-	private MemeberInformation[] member;
+	private MemberInformation[] member;
 	
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
 		int length = buffer.readInt();
-		member = new MemeberInformation[length];
+		member = new MemberInformation[length];
 		for(int i = 0;i<length;i++){
 			int playerId = buffer.readInt();
-			GileType[] types = new GileType[buffer.readInt()];
+			GildeType[] types = new GildeType[buffer.readInt()];
 			for(int j = 0;j<types.length;j++)
-				types[j] = buffer.readEnum(GileType.class);
-			member[i] = new MemeberInformation(playerId, types);
+				types[j] = buffer.readEnum(GildeType.class);
+			String[] groups = new String[types.length];
+			for(int j = 0;j<types.length;j++)
+				groups[j] = buffer.readString();
+			member[i] = new MemberInformation(playerId, types,groups);
 		}
 	}
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);
 		buffer.writeInt(member.length);
-		for(MemeberInformation i : member){
+		for(MemberInformation i : member){
 			buffer.writeInt(i.getPlayerId());
 			buffer.writeInt(i.getMember().length);
-			for(GileType type : i.getMember())
+			if(i.getMember().length != i.getGroups().length)
+				throw new IllegalArgumentException("Group length m,ust be equal to member length");
+			for(GildeType type : i.getMember())
 				buffer.writeEnum(type);
+			for(String s : i.getGroups())
+				buffer.writeString(s);
 		}
 	}
 }

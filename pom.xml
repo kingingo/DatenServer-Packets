@@ -103,6 +103,10 @@
 			<artifactId>definitions</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
-
+		<dependency>
+			<groupId>dev.wolveringer.lib</groupId>
+			<artifactId>NBTTag</artifactId>
+			<version>1.2.1</version>
+		</dependency>
 	</dependencies>
 </project>

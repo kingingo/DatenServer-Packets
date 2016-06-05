@@ -1,38 +1,33 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import java.util.ArrayList;
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.gilde.GildeType;
+import dev.wolveringer.nbt.NBTTagCompound;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import dev.wolveringer.gilde.GildeType;
 
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Getter
-public class PacketGildPermissionResponse extends Packet{
+public class PacketGildCostumDataResponse extends Packet{
 	private UUID gilde;
 	private GildeType type;
-	private String group;
-	private ArrayList<String> response = new ArrayList<>();
+	private NBTTagCompound comp;
 	
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
 		type = buffer.readEnum(GildeType.class);
-		int length = buffer.readInt();
-		for(int i = 0;i<length;i++)
-			response.add(buffer.readString());
+		comp = buffer.readNBTTag();
 	}
-		 
+	
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);
 		buffer.writeEnum(type);
-		buffer.writeInt(response.size());
-		for(String s : response)
-			buffer.writeString(s);
+		buffer.writeNBTTag(comp);
 	}
 }

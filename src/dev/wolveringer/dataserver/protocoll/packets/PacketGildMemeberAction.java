@@ -3,7 +3,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.util.UUID;
 
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.gilde.GileType;
+import dev.wolveringer.gilde.GildeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -22,7 +22,7 @@ public class PacketGildMemeberAction extends Packet{
 	}
 	
 	private UUID gilde;
-	private GileType type;
+	private GildeType type;
 	private int playerId;
 	private Action action;
 	private String data;
@@ -30,7 +30,7 @@ public class PacketGildMemeberAction extends Packet{
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
-		type = buffer.readEnum(GileType.class);
+		type = buffer.readEnum(GildeType.class);
 		playerId = buffer.readInt();
 		action = buffer.readEnum(Action.class);
 		data = buffer.readString();
