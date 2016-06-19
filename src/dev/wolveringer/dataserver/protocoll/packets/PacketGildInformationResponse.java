@@ -18,6 +18,7 @@ public class PacketGildInformationResponse extends Packet{
 	private GildeType[] activeSections;
 	private String name;
 	private String shortName;
+	private int ownerId;
 	
 	@Override
 	public void read(DataBuffer buffer) {
@@ -27,6 +28,7 @@ public class PacketGildInformationResponse extends Packet{
 			buffer.writeEnum(type);
 		buffer.writeString(name);
 		buffer.writeString(shortName);
+		buffer.writeInt(ownerId);
 	}
 	
 	@Override
@@ -37,5 +39,6 @@ public class PacketGildInformationResponse extends Packet{
 			activeSections[i] = buffer.readEnum(GildeType.class);
 		name = buffer.readString();
 		shortName = buffer.readString();
+		ownerId = buffer.readInt();
 	}
 }

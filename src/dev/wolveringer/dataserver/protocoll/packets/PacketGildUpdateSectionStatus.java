@@ -11,35 +11,23 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class PacketGildPermissionEdit extends Packet{
-	public static enum Action {
-		CHANGE_GROUP,
-		ADD_PERMISSION,
-		REMOVE_PERMISSION,
-		CREATE_GROUP,
-		DELETE_GROUP;
-	}
-	
+public class PacketGildUpdateSectionStatus extends Packet{
 	private UUID gilde;
 	private GildeType type;
-	private Action action;
-	private String group;
-	private String permission;
+	private boolean state;
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		gilde = buffer.readUUID();
-		type = buffer.readEnum(GildeType.class);
-		action = buffer.readEnum(Action.class);
-		permission = buffer.readString();
+		this.gilde = buffer.readUUID();
+		this.type = buffer.readEnum(GildeType.class);
+		this.state = buffer.readBoolean();
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);
 		buffer.writeEnum(type);
-		buffer.writeEnum(action);
-		buffer.writeString(permission);
+		buffer.writeBoolean(state);
 	}
-	
+
 }

@@ -53,7 +53,7 @@ public abstract class Packet {
 		return -1;
 	}
 
-	protected static void registerPacket(PacketDirection direction, Class<? extends Packet> packet) {
+	public static void registerPacket(PacketDirection direction, Class<? extends Packet> packet) {
 		try {
 			if (direction == PacketDirection.TO_SERVER)
 				serverBoundedPackets[serverPacketIdIndex++] = packet.getConstructors().length == 1 ? (Constructor<? extends Packet>) packet.getConstructors()[0] : packet.getConstructor();
@@ -65,7 +65,7 @@ public abstract class Packet {
 			e.printStackTrace();
 		}
 	}
-	protected static void registerPacket(int id,PacketDirection direction, Class<? extends Packet> packet) {
+	public static void registerPacket(int id,PacketDirection direction, Class<? extends Packet> packet) {
 		try {
 			if (direction == PacketDirection.TO_SERVER)
 				serverBoundedPackets[id] = packet.getConstructors().length == 1 ? (Constructor<? extends Packet>) packet.getConstructors()[0] : packet.getConstructor();
@@ -79,6 +79,7 @@ public abstract class Packet {
 	}
 
 	static {
+		System.out.println("Register packets with prot.. version = "+PacketVersion.PROTOCOLL_VERSION);
 		registerPacket(PacketDirection.TO_SERVER, PacketDisconnect.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketHandshakeInStart.class);
 		
@@ -116,6 +117,7 @@ public abstract class Packet {
 		registerPacket(PacketDirection.TO_SERVER, PacketGildPermissionRequest.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketGildSarch.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketGildCostumDataAction.class);
+		registerPacket(PacketDirection.TO_SERVER, PacketGildUpdateSectionStatus.class);
 		
 		registerPacket(PacketDirection.TO_SERVER, PacketPing.class);
 		registerPacket(PacketDirection.TO_SERVER, PacketPong.class);

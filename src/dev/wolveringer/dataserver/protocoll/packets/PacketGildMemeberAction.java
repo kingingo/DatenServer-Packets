@@ -17,8 +17,7 @@ public class PacketGildMemeberAction extends Packet{
 		INVITE,
 		ACCEPT_REQUEST,
 		DENY_REQUEST,
-		GROUP_ADD,
-		GROUP_REMOVE;
+		CHANGE_GROUP;
 	}
 	
 	private UUID gilde;
