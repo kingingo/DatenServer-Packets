@@ -15,7 +15,27 @@
 		 <protocoll.version.output>src/dev/wolveringer/dataserver/protocoll/packets/PacketVersion.java</protocoll.version.output>
   		<github.global.server>git</github.global.server>
 	</properties>
-	
+
+	<distributionManagement>
+		<repository>
+			<id>epicpvp-releases</id>
+			<name>epicpvp-artifactory-releases</name>
+			<url>http://149.202.150.185:8081/artifactory/epicpvp-releases/</url>
+		</repository>
+		<snapshotRepository>
+			<id>epicpvp-snapshots</id>
+			<name>epicpvp-artifactory-snapshots</name>
+			<url>http://149.202.150.185:8081/artifactory/epicpvp-snapshots/</url>
+		</snapshotRepository>
+	</distributionManagement>
+
+	<repositories>
+		<repository>
+			<id>epicpvp-all</id>
+			<url>http://149.202.150.185:8081/artifactory/epicpvp-all/</url>
+		</repository>
+	</repositories>
+
 	<build>
 		<sourceDirectory>src</sourceDirectory>
 		<plugins>
@@ -28,23 +48,23 @@
 				</configuration>
 			</plugin>
 			<!-- Create build id -->
-			<plugin>
-				<groupId>org.codehaus.mojo</groupId>
-				<artifactId>buildnumber-maven-plugin</artifactId>
-				<executions>
-					<execution>
-						<phase>validate</phase>
-						<goals>
-							<goal>create</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<buildNumberPropertyName>buildNumber</buildNumberPropertyName>
-					<doCheck>false</doCheck>
-					<doUpdate>true</doUpdate>
-				</configuration>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>org.codehaus.mojo</groupId>-->
+				<!--<artifactId>buildnumber-maven-plugin</artifactId>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<phase>validate</phase>-->
+						<!--<goals>-->
+							<!--<goal>create</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+				<!--<configuration>-->
+					<!--<buildNumberPropertyName>buildNumber</buildNumberPropertyName>-->
+					<!--<doCheck>false</doCheck>-->
+					<!--<doUpdate>true</doUpdate>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
 			<!-- Building mainfest with buildId -->
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -58,25 +78,33 @@
 				</configuration>
 			</plugin>
 			<!-- Replace build id -->
-			<plugin>
-				<groupId>com.google.code.maven-replacer-plugin</groupId>
-				<artifactId>maven-replacer-plugin</artifactId>
-				<version>1.4.0</version>
-				<configuration>
-					<file>${protocoll.version.input}</file>
-					<outputFile>${protocoll.version.output}</outputFile>
-					<replacements>
-						<replacement>
-							<token>@buildId@</token>
-							<value>${buildNumber}</value>
-						</replacement> <!-- PacketVersionTemplate -->
-						<replacement>
-							<token>PacketVersionTemplate</token>
-							<value>PacketVersion</value>
-						</replacement> <!-- PacketVersionTemplate -->
-					</replacements>
-				</configuration>
-			</plugin>
+			<!--<plugin>-->
+				<!--<groupId>com.google.code.maven-replacer-plugin</groupId>-->
+				<!--<artifactId>maven-replacer-plugin</artifactId>-->
+				<!--<version>1.4.0</version>-->
+				<!--<executions>-->
+					<!--<execution>-->
+						<!--<phase>process-sources</phase>-->
+						<!--<goals>-->
+							<!--<goal>replace</goal>-->
+						<!--</goals>-->
+					<!--</execution>-->
+				<!--</executions>-->
+				<!--<configuration>-->
+					<!--<file>${protocoll.version.input}</file>-->
+					<!--<outputFile>${protocoll.version.output}</outputFile>-->
+					<!--<replacements>-->
+						<!--<replacement>-->
+							<!--<token>@buildId@</token>-->
+							<!--<value>${buildNumber}</value>-->
+						<!--</replacement> &lt;!&ndash; PacketVersionTemplate &ndash;&gt;-->
+						<!--<replacement>-->
+							<!--<token>PacketVersionTemplate</token>-->
+							<!--<value>PacketVersion</value>-->
+						<!--</replacement> &lt;!&ndash; PacketVersionTemplate &ndash;&gt;-->
+					<!--</replacements>-->
+				<!--</configuration>-->
+			<!--</plugin>-->
 		</plugins>
 	</build>
 	<dependencies>
