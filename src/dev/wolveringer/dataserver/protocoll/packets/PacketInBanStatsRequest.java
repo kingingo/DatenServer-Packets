@@ -16,16 +16,21 @@ public class PacketInBanStatsRequest extends Packet{
 	private String ip;
 	@Getter
 	private String name;
+	@Getter
+	private int deep;
+	
 	@Override
 	public void read(DataBuffer buffer) {
 		player = buffer.readUUID();
 		ip = buffer.readString();
 		name = buffer.readString();
+		deep = buffer.readInt();
 	}
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(player);
 		buffer.writeString(ip);
 		buffer.writeString(name);
+		buffer.writeInt(deep);
 	}
 }

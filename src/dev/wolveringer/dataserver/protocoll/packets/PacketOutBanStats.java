@@ -1,5 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.UUID;
 
 import dev.wolveringer.dataserver.ban.BanEntity;
@@ -13,14 +15,13 @@ import lombok.NoArgsConstructor;
 @Getter
 public class PacketOutBanStats extends Packet{
 	private UUID request;
-	private BanEntity e;
+	private List<BanEntity> entries;
 	
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(request);
-		if(e != null && e.isActive()){
-			buffer.writeBoolean(true);
-			
+		buffer.writeInt(entries.size());
+		for(BanEntity e :  entries){
 			buffer.writeString(e.getUsernames().size() == 0?null:e.getUsernames().get(0));
 			buffer.writeString(e.getUuids().size() == 0?null:e.getUuids().get(0).toString());
 			buffer.writeString(e.getIp());
@@ -30,16 +31,15 @@ public class PacketOutBanStats extends Packet{
 			buffer.writeLong(e.getEnd());
 			buffer.writeInt(e.getLevel());
 			buffer.writeString(e.getReson());
-		}
-		else
-		{
-			buffer.writeBoolean(false);
+			buffer.writeLong(e.getDate());
 		}
 	}
 	@Override
 	public void read(DataBuffer buffer) {
 		request = buffer.readUUID();
-		if(buffer.readBoolean()){
+		int length = buffer.readInt();
+		entries = new ArrayList<>(length);
+		for(int i = 0;i<length;i++){
 			String username = buffer.readString();
 			String uuid = buffer.readString();
 			String ip = buffer.readString();
@@ -49,9 +49,8 @@ public class PacketOutBanStats extends Packet{
 			long end = buffer.readLong();
 			Integer level = buffer.readInt();
 			String reson = buffer.readString();
-			e = new BanEntity(ip, username, uuid, banner, bannerUUID, bannerIp, reson, level, end);
+			String date = Long.toString(buffer.readLong());
+			entries.add(new BanEntity(ip, username, uuid, banner, bannerUUID, bannerIp, date, reson, level, end));
 		}
-		else
-			e = new BanEntity.NotBannedBanEntity();
 	}
 }
