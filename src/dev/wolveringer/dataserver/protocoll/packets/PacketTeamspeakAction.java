@@ -8,24 +8,27 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class PacketGildSarch extends Packet {
+public class PacketTeamspeakAction extends Packet {
 	public static enum Action {
-		PLAYER, GILDE_NAME, TYPE, OWN_GILD;
+		UPDATE_AVATAR, UPDATE_GROUPS, UNLINK;
 	}
 
+	private int playerId;
 	private Action action;
-	private String value;
+	private String data;
 
 	@Override
 	public void read(DataBuffer buffer) {
+		playerId = buffer.readInt();
 		action = buffer.readEnum(Action.class);
-		value = buffer.readString();
+		data = buffer.readString();
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
+		buffer.writeInt(playerId);
 		buffer.writeEnum(action);
-		buffer.writeString(value);
+		buffer.writeString(data);
 	}
 
 }

@@ -1,5 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
+import java.util.UUID;
+
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -8,24 +10,20 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Getter
-public class PacketGildSarch extends Packet {
-	public static enum Action {
-		PLAYER, GILDE_NAME, TYPE, OWN_GILD;
-	}
-
-	private Action action;
-	private String value;
-
+public class PacketTeamspeakRequestAction extends Packet{
+	private UUID request;
+	private boolean accept;
+	
 	@Override
 	public void read(DataBuffer buffer) {
-		action = buffer.readEnum(Action.class);
-		value = buffer.readString();
+		request = buffer.readUUID();
+		accept = buffer.readBoolean();
 	}
 
 	@Override
 	public void write(DataBuffer buffer) {
-		buffer.writeEnum(action);
-		buffer.writeString(value);
+		buffer.writeUUID(request);
+		buffer.writeBoolean(accept);
 	}
 
 }

@@ -13,6 +13,7 @@
 	<properties>
 		 <protocoll.version.input>src/dev/wolveringer/dataserver/protocoll/packets/PacketVersionTemplate.java</protocoll.version.input>
 		 <protocoll.version.output>src/dev/wolveringer/dataserver/protocoll/packets/PacketVersion.java</protocoll.version.output>
+  		<github.global.server>git</github.global.server>
 	</properties>
 	
 	<build>
@@ -61,14 +62,6 @@
 				<groupId>com.google.code.maven-replacer-plugin</groupId>
 				<artifactId>maven-replacer-plugin</artifactId>
 				<version>1.4.0</version>
-				<executions>
-					<execution>
-						<phase>process-sources</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-					</execution>
-				</executions>
 				<configuration>
 					<file>${protocoll.version.input}</file>
 					<outputFile>${protocoll.version.output}</outputFile>
