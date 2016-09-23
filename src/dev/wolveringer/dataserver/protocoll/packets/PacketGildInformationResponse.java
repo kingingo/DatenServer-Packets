@@ -22,17 +22,6 @@ public class PacketGildInformationResponse extends Packet{
 	
 	@Override
 	public void read(DataBuffer buffer) {
-		buffer.writeUUID(gilde);
-		buffer.writeInt(activeSections.length);
-		for(GildeType type : activeSections)
-			buffer.writeEnum(type);
-		buffer.writeString(name);
-		buffer.writeString(shortName);
-		buffer.writeInt(ownerId);
-	}
-	
-	@Override
-	public void write(DataBuffer buffer) {
 		gilde = buffer.readUUID();
 		activeSections = new GildeType[buffer.readInt()];
 		for(int i = 0;i<activeSections.length;i++)
@@ -40,5 +29,16 @@ public class PacketGildInformationResponse extends Packet{
 		name = buffer.readString();
 		shortName = buffer.readString();
 		ownerId = buffer.readInt();
+	}
+	
+	@Override
+	public void write(DataBuffer buffer) {
+		buffer.writeUUID(gilde);
+		buffer.writeInt(activeSections.length);
+		for(GildeType type : activeSections)
+			buffer.writeEnum(type);
+		buffer.writeString(name);
+		buffer.writeString(shortName);
+		buffer.writeInt(ownerId);
 	}
 }

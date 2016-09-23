@@ -60,6 +60,7 @@ public abstract class Packet {
 			clientBoundedPackets[clientPacketIdIndex++] = null;
 	}
 	
+	@SuppressWarnings("unchecked")
 	public static void registerPacket(PacketDirection direction, Class<? extends Packet> packet) {
 		try {
 			if (direction == PacketDirection.TO_SERVER)
@@ -72,6 +73,7 @@ public abstract class Packet {
 			e.printStackTrace();
 		}
 	}
+	@SuppressWarnings("unchecked")
 	public static void registerPacket(int id,PacketDirection direction, Class<? extends Packet> packet) {
 		try {
 			if (direction == PacketDirection.TO_SERVER)
@@ -125,12 +127,16 @@ public abstract class Packet {
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildSarch.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildCostumDataAction.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildUpdateSectionStatus.class);
-	    registerPacket(PacketDirection.TO_SERVER, PacketGildCreate.class);
+	    registerPacket(PacketDirection.TO_SERVER, PacketGildAction.class);
 	    
 	    registerPacket(PacketDirection.TO_SERVER, PacketPing.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketPong.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketTeamspeakRequestAction.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketTeamspeakAction.class);
+	    
+	    registerPacket(PacketDirection.TO_SERVER, PacketGildMoneyAction.class); //TODO move to others?
+	    registerPacket(PacketDirection.TO_SERVER, PacketGildMoneyHistoryAction.class);
+	    
 	    
 	    registerPacket(PacketDirection.TO_CLIENT, PacketDisconnect.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketOutHandschakeAccept.class);
@@ -160,10 +166,13 @@ public abstract class Packet {
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildInformationResponse.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildSarchResponse.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildCostumDataResponse.class);
-	    registerPacket(PacketDirection.TO_CLIENT, PacketGildCreateResponse.class);
+	    registerPacket(PacketDirection.TO_CLIENT, PacketGildActionResponse.class);
 	    
 	    registerPacket(PacketDirection.TO_CLIENT, PacketPing.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketPong.class);
+	    
+	    registerPacket(PacketDirection.TO_CLIENT, PacketGildMoneyHistoryResponse.class);
+	    registerPacket(PacketDirection.TO_CLIENT, PacketGildMoneyResponse.class);
 	}
 
 	@Getter

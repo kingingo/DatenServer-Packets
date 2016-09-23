@@ -30,6 +30,7 @@ public class PacketGildPermissionEdit extends Packet{
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
 		type = buffer.readEnum(GildeType.class);
+		group = buffer.readString();
 		action = buffer.readEnum(Action.class);
 		permission = buffer.readString();
 	}
@@ -38,6 +39,7 @@ public class PacketGildPermissionEdit extends Packet{
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);
 		buffer.writeEnum(type);
+		buffer.writeString(group);
 		buffer.writeEnum(action);
 		buffer.writeString(permission);
 	}
