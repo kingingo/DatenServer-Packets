@@ -28,7 +28,7 @@ public class PacketGildMoneyHistoryResponse extends Packet{
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);
-		buffer.writeByte(type.ordinal());
+		buffer.writeEnum(type);
 		buffer.writeInt(records.length);
 		for(MoneyLogRecord r : records){
 			buffer.writeLong(r.getDate());

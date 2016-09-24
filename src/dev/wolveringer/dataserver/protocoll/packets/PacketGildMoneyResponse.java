@@ -27,7 +27,7 @@ public class PacketGildMoneyResponse extends Packet{
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);
-		buffer.writeByte(type.ordinal());
+		buffer.writeEnum(type);
 		buffer.writeInt(playerId);
 		buffer.writeInt(response);
 	}

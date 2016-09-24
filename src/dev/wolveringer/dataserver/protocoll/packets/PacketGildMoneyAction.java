@@ -21,7 +21,7 @@ public class PacketGildMoneyAction extends Packet{
 	private UUID gilde;
 	private GildeType type;
 	private Action action;
-	private int playerId = -1;
+	private int playerId; //UNUSED LOL
 	private int amount;
 	private String reason;
 	
