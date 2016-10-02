@@ -15,8 +15,9 @@ public class PacketGildMemeberAction extends Packet{
 	public static enum Action {
 		KICK,
 		INVITE,
+		REMOVE_INVITE,
 		ACCEPT_REQUEST,
-		DENY_REQUEST,
+		//DENY_REQUEST,
 		CHANGE_GROUP;
 	}
 	

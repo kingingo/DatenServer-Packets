@@ -1,7 +1,5 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import java.util.UUID;
-
 import dev.wolveringer.dataserver.player.Setting;
 import dev.wolveringer.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
