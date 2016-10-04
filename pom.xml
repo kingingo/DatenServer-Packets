@@ -2,17 +2,17 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
-	<groupId>dev.wolveringer.datenserver</groupId>
+	<groupId>eu.epicpvp.datenserver</groupId>
 	<artifactId>packets</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 
 	<scm>
 		<connection>scm:git:https://gitlab.com/WolverinDEV/DatenServer-Packets.git</connection>
 	</scm>
-	
+
 	<properties>
-		 <protocoll.version.input>src/dev/wolveringer/dataserver/protocoll/packets/PacketVersionTemplate.java</protocoll.version.input>
-		 <protocoll.version.output>src/dev/wolveringer/dataserver/protocoll/packets/PacketVersion.java</protocoll.version.output>
+		 <protocoll.version.input>src/eu/epicpvp/dataserver/protocoll/packets/PacketVersionTemplate.java</protocoll.version.input>
+		 <protocoll.version.output>src/eu/epicpvp/dataserver/protocoll/packets/PacketVersion.java</protocoll.version.output>
   		<github.global.server>git</github.global.server>
 	</properties>
 
@@ -120,12 +120,12 @@
 			<version>4.0.34.Final</version>
 		</dependency>
 		<dependency>
-			<groupId>dev.wolveringer.datenserver</groupId>
+			<groupId>eu.epicpvp.datenserver</groupId>
 			<artifactId>definitions</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 		<dependency>
-			<groupId>dev.wolveringer.lib</groupId>
+			<groupId>eu.epicpvp.lib</groupId>
 			<artifactId>NBTTag</artifactId>
 			<version>1.2.1</version>
 		</dependency>
