@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,7 +26,7 @@ public class PacketSkinRequest extends Packet {
 
 	private UUID requestUUID;
 	private SkinRequest[] requests;
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(requestUUID);

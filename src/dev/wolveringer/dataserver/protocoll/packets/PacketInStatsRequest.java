@@ -1,9 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import java.util.UUID;
-
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,13 +12,13 @@ import lombok.NoArgsConstructor;
 public class PacketInStatsRequest extends Packet{
 	private int player;
 	private GameType game;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		player = buffer.readInt();
 		game = GameType.values()[buffer.readByte()];
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeInt(player);

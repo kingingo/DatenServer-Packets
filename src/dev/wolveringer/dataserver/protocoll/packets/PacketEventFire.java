@@ -1,18 +1,18 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.events.Event;
 import dev.wolveringer.events.EventRegistry;
 
 public class PacketEventFire extends Packet{
 	private Event event;
-	
+
 	public PacketEventFire() {}
 
 	public PacketEventFire(Event event) {
 		this.event = event;
 	}
-	
+
 	public Event getEvent() {
 		return event;
 	}

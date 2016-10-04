@@ -1,7 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.player.Setting;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.player.Setting;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ public class PacketInPlayerSettingsRequest extends Packet{
 	private int player;
 	@Getter
 	private Setting[] settings;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		player = buffer.readInt();
@@ -21,7 +21,7 @@ public class PacketInPlayerSettingsRequest extends Packet{
 		for(int i = 0;i<settings.length;i++)
 			settings[i] = Setting.values()[buffer.readByte()];
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeInt(player);

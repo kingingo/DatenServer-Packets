@@ -1,7 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,9 +18,9 @@ public class PacketInLobbyServerRequest extends Packet{
 		private GameType game;
 		private int maxServers;
 	}
-	
+
 	private GameRequest[] request;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		this.request = new GameRequest[buffer.readByte()];

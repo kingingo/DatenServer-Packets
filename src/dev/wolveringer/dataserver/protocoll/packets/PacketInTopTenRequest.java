@@ -1,8 +1,8 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.gamestats.StatsKey;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.StatsKey;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class PacketInTopTenRequest extends Packet{
 	private GameType game;
 	private StatsKey condition;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		this.game = GameType.values()[buffer.readByte()];

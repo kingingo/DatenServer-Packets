@@ -1,7 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.dataserver.protocoll.packets.PacketOutServerStatus.Action;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -15,7 +15,7 @@ public class PacketInServerStatusRequest extends Packet{
 	private String value;
 	private boolean player;
 	private GameType[] games;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		this.action = Action.values()[buffer.readByte()];
@@ -28,7 +28,7 @@ public class PacketInServerStatusRequest extends Packet{
 		}
 		this.player = buffer.readBoolean();
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeByte(action.ordinal());

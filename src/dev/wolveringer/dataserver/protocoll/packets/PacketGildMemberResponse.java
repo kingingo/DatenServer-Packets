@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gilde.GildeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -21,7 +21,7 @@ public class PacketGildMemberResponse extends Packet{
 	}
 	private UUID gilde;
 	private MemberInformation[] member;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();

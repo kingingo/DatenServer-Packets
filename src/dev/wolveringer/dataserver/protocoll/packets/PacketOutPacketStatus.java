@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class PacketOutPacketStatus extends Packet {
 		private int id;
 		@Getter
 		private String message;
-		
+
 		@Override
 		public String toString() {
 			return "Error: id=" + id + " Message=" + message + "";
@@ -38,7 +38,7 @@ public class PacketOutPacketStatus extends Packet {
 		this.packetId = receved;
 		this.errors = errors;
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(packetId);
@@ -51,7 +51,7 @@ public class PacketOutPacketStatus extends Packet {
 		} else
 			buffer.writeByte(0);
 	}
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		packetId = buffer.readUUID();

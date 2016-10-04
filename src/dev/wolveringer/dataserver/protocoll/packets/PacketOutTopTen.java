@@ -2,9 +2,9 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.Arrays;
 
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.gamestats.StatsKey;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.StatsKey;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,11 +19,11 @@ public class PacketOutTopTen extends Packet{
 		private String player;
 		private String topValue;
 	}
-	
+
 	private GameType game;
 	private StatsKey condition;
 	private RankInformation[] ranks;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		game = GameType.values()[buffer.readByte()];

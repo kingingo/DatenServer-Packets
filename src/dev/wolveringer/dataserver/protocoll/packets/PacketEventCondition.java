@@ -1,6 +1,6 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.events.EventCondition;
 import dev.wolveringer.events.EventConditions;
 import dev.wolveringer.events.EventType;
@@ -16,17 +16,17 @@ public class PacketEventCondition extends Packet{
 	private EventConditions type;
 	private boolean active;
 	private EventCondition condition;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		eventType = EventType.values()[buffer.readInt()];
 		type = EventConditions.values()[buffer.readInt()];
 		active = buffer.readBoolean();
-		
+
 		if(active)
 			condition = EventConditions.readCondition(buffer);
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeInt(eventType.ordinal());

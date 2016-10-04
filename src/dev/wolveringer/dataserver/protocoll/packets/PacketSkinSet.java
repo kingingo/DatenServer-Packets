@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.skin.Skin;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -45,9 +45,9 @@ public class PacketSkinSet extends Packet {
 		this.rawValue = rawValue;
 		this.signature = signature;
 	}
-	
+
 	/**
-	 * 
+	 *
 	 * @param player
 	 *	Remove costum skin!
 	 */
@@ -75,7 +75,7 @@ public class PacketSkinSet extends Packet {
 			break;
 		}
 	}
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		playerId = buffer.readInt();

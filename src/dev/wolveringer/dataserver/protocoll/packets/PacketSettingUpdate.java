@@ -2,8 +2,8 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.player.Setting;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.player.Setting;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,8 +15,8 @@ public class PacketSettingUpdate extends Packet{
 	private UUID player;
 	private Setting setting;
 	private String value;
-	
-	public void read(dev.wolveringer.dataserver.protocoll.DataBuffer buffer) {
+
+	public void read(DataBuffer buffer) {
 		player = buffer.readUUID();
 		setting = Setting.values()[buffer.readInt()];
 		value = buffer.readString();

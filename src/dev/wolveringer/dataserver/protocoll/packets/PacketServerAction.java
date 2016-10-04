@@ -1,8 +1,6 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import java.util.UUID;
-
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -23,10 +21,10 @@ public class PacketServerAction extends Packet{
 		RESTART,
 		STOP;
 	}
-	
+
 	@Getter
 	private PlayerAction[] actions;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		actions = new PlayerAction[buffer.readByte()];
@@ -43,5 +41,5 @@ public class PacketServerAction extends Packet{
 			buffer.writeString(a.getValue());
 		}
 	}
-	
+
 }

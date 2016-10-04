@@ -1,6 +1,6 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,12 +19,12 @@ public class PacketChatMessage extends Packet{
 		PLAYER,
 		BROTCAST;
 	}
-	
+
 	@Getter
 	private String message;
 	@Getter
 	private Target[] targets;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		targets = new Target[buffer.readByte()];

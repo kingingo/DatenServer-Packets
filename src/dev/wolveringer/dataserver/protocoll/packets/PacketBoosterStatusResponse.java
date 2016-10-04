@@ -1,7 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
 import dev.wolveringer.booster.BoosterType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -14,7 +14,7 @@ public class PacketBoosterStatusResponse extends Packet{
 	private BoosterType type;
 	private long start;
 	private int time;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		playerId = buffer.readInt();

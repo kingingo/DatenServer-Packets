@@ -4,8 +4,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.ban.BanEntity;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.ban.BanEntity;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class PacketOutBanStats extends Packet{
 	private UUID request;
 	private List<BanEntity> entries;
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(request);

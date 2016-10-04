@@ -2,9 +2,9 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.gamestats.StatsKey;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.StatsKey;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gamestats.Statistic;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,13 +17,13 @@ public class PacketOutStats extends Packet{
 	private UUID player;
 	private GameType game;
 	private Statistic[] stats;
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(player);
 		buffer.writeByte(game.ordinal());
 		buffer.writeByte(stats.length);
-		
+
 		for(Statistic stat : stats){
 			if(stat == null){
 				System.out.println("Stat null");
@@ -51,13 +51,13 @@ public class PacketOutStats extends Packet{
 			}
 		}
 	}
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		player = buffer.readUUID();
 		game = GameType.values()[buffer.readByte()];
 		stats = new Statistic[buffer.readByte()];
-		
+
 		for(int i = 0;i<stats.length;i++){
 			StatsKey key = StatsKey.values()[buffer.readByte()];
 			int value = buffer.readByte();

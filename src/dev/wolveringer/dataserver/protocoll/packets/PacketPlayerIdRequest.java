@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
@@ -11,15 +11,15 @@ import lombok.NoArgsConstructor;
 public class PacketPlayerIdRequest extends Packet{
 	private String[] names;
 	private UUID[] uuids;
-	
+
 	public PacketPlayerIdRequest(String...names){
 		this.names = names;
 	}
-	
+
 	public PacketPlayerIdRequest(UUID...uuid){
 		this.uuids = uuid;
 	}
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		switch (buffer.readInt()) {

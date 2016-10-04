@@ -1,7 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.player.LanguageType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.player.LanguageType;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,7 +21,7 @@ public class PacketLanguageResponse extends Packet {
 		if(buffer.readBoolean())
 			fileContains = buffer.readString();
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeEnum(type);

@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gilde.GildeType;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -18,7 +18,7 @@ public class PacketGildPermissionResponse extends Packet{
 	private GildeType type;
 	private String group;
 	private List<String> response = new ArrayList<>();
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
@@ -28,7 +28,7 @@ public class PacketGildPermissionResponse extends Packet{
 		for(int i = 0;i<length;i++)
 			response.add(buffer.readString());
 	}
-		 
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);

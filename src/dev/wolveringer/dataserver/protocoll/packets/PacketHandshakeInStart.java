@@ -1,7 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
 import dev.wolveringer.client.connection.ClientType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -19,7 +19,7 @@ public class PacketHandshakeInStart extends Packet{
 	private ClientType type;
 	@Getter
 	private String protocollVersion;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		host = buffer.readString();
@@ -29,7 +29,7 @@ public class PacketHandshakeInStart extends Packet{
 		type = ClientType.values()[buffer.readByte()];
 		protocollVersion = buffer.readString();
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeString(host);

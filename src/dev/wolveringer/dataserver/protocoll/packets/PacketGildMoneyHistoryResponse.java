@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gilde.GildeType;
 import dev.wolveringer.gilde.MoneyLogRecord;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ public class PacketGildMoneyHistoryResponse extends Packet{
 	private UUID gilde;
 	private GildeType type;
 	private MoneyLogRecord[] records;
-	
+
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
 		type = buffer.readEnum(GildeType.class);
@@ -24,7 +24,7 @@ public class PacketGildMoneyHistoryResponse extends Packet{
 		for(int i = 0;i<records.length;i++)
 			records[i] = new MoneyLogRecord(buffer.readLong(), buffer.readInt(), buffer.readInt(), buffer.readString());
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);

@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,7 +18,7 @@ public class PacketInBanStatsRequest extends Packet{
 	private String name;
 	@Getter
 	private int deep;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		player = buffer.readUUID();

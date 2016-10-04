@@ -3,7 +3,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.lang.reflect.Constructor;
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.Getter;
 
 public abstract class Packet {
@@ -59,7 +59,7 @@ public abstract class Packet {
 		else
 			clientBoundedPackets[clientPacketIdIndex++] = null;
 	}
-	
+
 	@SuppressWarnings("unchecked")
 	public static void registerPacket(PacketDirection direction, Class<? extends Packet> packet) {
 		try {
@@ -91,7 +91,7 @@ public abstract class Packet {
 		System.out.println("Register packets with prot.. version = "+PacketVersion.PROTOCOLL_VERSION);
 	    registerPacket(PacketDirection.TO_SERVER, PacketDisconnect.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketHandshakeInStart.class);
-	    
+
 	    registerPacket(PacketDirection.TO_SERVER, PacketInBanStatsRequest.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketInChangePlayerSettings.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketInPlayerSettingsRequest.class);
@@ -128,20 +128,20 @@ public abstract class Packet {
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildCostumDataAction.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildUpdateSectionStatus.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildAction.class);
-	    
+
 	    registerPacket(PacketDirection.TO_SERVER, PacketPing.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketPong.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketTeamspeakRequestAction.class);
 	    registerPacket(PacketDirection.TO_SERVER, PacketTeamspeakAction.class);
-	    
+
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildMoneyAction.class); //TODO move to others?
 	    registerPacket(PacketDirection.TO_SERVER, PacketGildMoneyHistoryAction.class);
-	    
-	    
+
+
 	    registerPacket(PacketDirection.TO_CLIENT, PacketDisconnect.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketOutHandschakeAccept.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketOutPacketStatus.class);
-	    
+
 	    registerPacket(PacketDirection.TO_CLIENT, PacketOutStats.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketOutPlayerSettings.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketOutPlayerServer.class);
@@ -167,10 +167,10 @@ public abstract class Packet {
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildSarchResponse.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildCostumDataResponse.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildActionResponse.class);
-	    
+
 	    registerPacket(PacketDirection.TO_CLIENT, PacketPing.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketPong.class);
-	    
+
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildMoneyHistoryResponse.class);
 	    registerPacket(PacketDirection.TO_CLIENT, PacketGildMoneyResponse.class);
 	}

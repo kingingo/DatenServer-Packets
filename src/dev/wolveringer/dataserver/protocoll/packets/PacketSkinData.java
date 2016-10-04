@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.skin.Skin;
 import dev.wolveringer.skin.SteveSkin;
 import lombok.AllArgsConstructor;
@@ -23,10 +23,10 @@ public class PacketSkinData extends Packet {
 			return "SkinResponse [skin=" + skin + "]";
 		}
 	}
-	
+
 	private UUID requestUUID;
 	private SkinResponse[] reponse;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		requestUUID = buffer.readUUID();

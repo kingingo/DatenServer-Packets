@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gilde.GildeType;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,7 @@ public class PacketGildPermissionRequest extends Packet {
 	private UUID gilde;
 	private GildeType type;
 	private String group = null;
-	
+
 	/**
 	 * Request all groups from gilde
 	 */
@@ -28,7 +28,7 @@ public class PacketGildPermissionRequest extends Packet {
 		this.type = type;
 		this.group = group;
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);

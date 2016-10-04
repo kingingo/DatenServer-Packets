@@ -1,6 +1,6 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,10 +13,10 @@ public class PacketReportRequest extends Packet{
 		PLAYER_OPEN_REPORTS,
 		OPEN_REPORTS;
 	}
-	
+
 	private RequestType type;
 	private int value;
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeEnum(type);

@@ -1,6 +1,6 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -18,10 +18,10 @@ public class PacketReportEdit extends Packet{
 	private EditKey edit;
 	private int value;
 	private int value2;
-	
-	private String reson; 
+
+	private String reson;
 	private String info;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		edit =buffer.readEnum(EditKey.class);
@@ -32,7 +32,7 @@ public class PacketReportEdit extends Packet{
 			info = buffer.readString();
 		}
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeEnum(edit);

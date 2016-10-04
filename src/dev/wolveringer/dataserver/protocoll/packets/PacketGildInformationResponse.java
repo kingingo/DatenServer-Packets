@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gilde.GildeType;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -19,7 +19,7 @@ public class PacketGildInformationResponse extends Packet{
 	private String name;
 	private String shortName;
 	private int ownerId;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();
@@ -30,7 +30,7 @@ public class PacketGildInformationResponse extends Packet{
 		shortName = buffer.readString();
 		ownerId = buffer.readInt();
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);

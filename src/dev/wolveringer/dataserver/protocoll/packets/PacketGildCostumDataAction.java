@@ -2,7 +2,7 @@ package dev.wolveringer.dataserver.protocoll.packets;
 
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import dev.wolveringer.gilde.GildeType;
 import dev.wolveringer.nbt.NBTTagCompound;
 import lombok.Getter;
@@ -19,7 +19,7 @@ public class PacketGildCostumDataAction extends Packet{
 	private GildeType type;
 	private Action action;
 	private NBTTagCompound data;
-	
+
 	public PacketGildCostumDataAction(UUID gilde,GildeType type) {
 		this.gilde = gilde;
 		this.type = type;
@@ -33,7 +33,7 @@ public class PacketGildCostumDataAction extends Packet{
 		this.data = data;
 	}
 
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeUUID(gilde);
@@ -41,7 +41,7 @@ public class PacketGildCostumDataAction extends Packet{
 		buffer.writeEnum(action);
 		buffer.writeNBTTag(data);
 	}
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		gilde = buffer.readUUID();

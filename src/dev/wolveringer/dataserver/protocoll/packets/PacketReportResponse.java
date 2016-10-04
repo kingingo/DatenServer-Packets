@@ -3,9 +3,9 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.util.ArrayList;
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
-import dev.wolveringer.report.ReportEntity;
-import dev.wolveringer.report.ReportWorker;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.report.ReportEntity;
+import eu.epicpvp.datenserver.definitions.report.ReportWorker;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
 public class PacketReportResponse extends Packet{
 	private UUID requestPacket;
 	private ReportEntity[] entities;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		requestPacket = buffer.readUUID();
@@ -30,7 +30,7 @@ public class PacketReportResponse extends Packet{
 				workers.add(new ReportWorker(reportId, buffer.readInt(), buffer.readLong(), buffer.readLong()));
 			entities[i] = e;
 		}
-		
+
 	}
 	@Override
 	public void write(DataBuffer buffer) {

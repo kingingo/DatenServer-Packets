@@ -1,10 +1,8 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
-import java.util.UUID;
-
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.gamestats.StatsKey;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.StatsKey;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -60,7 +58,7 @@ public class PacketInStatsEdit extends Packet {
 			changes[i] = new EditStats(game, action,key, value);
 		}
 	}
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeInt(player);

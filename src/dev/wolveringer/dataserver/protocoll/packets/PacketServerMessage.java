@@ -1,7 +1,7 @@
 package dev.wolveringer.dataserver.protocoll.packets;
 
 import dev.wolveringer.client.connection.ClientType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -15,35 +15,35 @@ public class PacketServerMessage extends Packet{
 		private ClientType targetType;
 		private String target = null;
 	}
-	
+
 	public PacketServerMessage(String channel,String target,DataBuffer message){
 		this.channel = channel;
 		this.targets = new Target[]{new Target(null, target)};
 		this.message = new byte[message.writerIndex()];
 		System.arraycopy(message.array(), 0, this.message, 0, message.writerIndex());
 	}
-	
+
 	public PacketServerMessage(String channel,ClientType target,DataBuffer message){
 		this.channel = channel;
 		this.targets = new Target[]{new Target(target, null)};
 		this.message = new byte[message.writerIndex()];
 		System.arraycopy(message.array(), 0, this.message, 0, message.writerIndex());
 	}
-	
+
 	public PacketServerMessage(String channel,ClientType target,int limit,DataBuffer message){
 		this.channel = channel;
 		this.targets = new Target[]{new Target(target, "targetlimit;"+limit)};
 		this.message = new byte[message.writerIndex()];
 		System.arraycopy(message.array(), 0, this.message, 0, message.writerIndex());
 	}
-	
+
 	@Getter
 	private byte[] message;
 	@Getter
 	private String channel;
 	@Getter
 	private Target[] targets;
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		targets = new Target[buffer.readByte()];

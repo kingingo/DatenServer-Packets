@@ -6,7 +6,7 @@ import java.util.Map;
 import java.util.Map.Entry;
 import java.util.UUID;
 
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class PacketGildSarchResponse extends Packet {
 			this.response.put(e.getKey(), e.getValue());
 		this.requested = packetUUID;
 	}
-	
+
 	public void read(DataBuffer buffer) {
 		this.requested = buffer.readUUID();
 		int length = buffer.readInt();

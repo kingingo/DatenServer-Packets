@@ -3,9 +3,9 @@ package dev.wolveringer.dataserver.protocoll.packets;
 import java.util.ArrayList;
 import java.util.List;
 
-import dev.wolveringer.dataserver.gamestats.GameState;
-import dev.wolveringer.dataserver.gamestats.GameType;
-import dev.wolveringer.dataserver.protocoll.DataBuffer;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameState;
+import eu.epicpvp.datenserver.definitions.dataserver.gamestats.GameType;
+import eu.epicpvp.datenserver.definitions.dataserver.protocoll.DataBuffer;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -24,7 +24,7 @@ public class PacketOutServerStatus extends Packet{
 		GENERAL,
 		GAMETYPE;
 	}
-	
+
 	private Action action;
 	private GameType[] games;
 	private String value;
@@ -34,7 +34,7 @@ public class PacketOutServerStatus extends Packet{
 	private int player;
 	private int maxPlayers;
 	private List<String> players;
-	
+
 	@Override
 	public void write(DataBuffer buffer) {
 		buffer.writeByte(action.ordinal());
@@ -45,7 +45,7 @@ public class PacketOutServerStatus extends Packet{
 			for(int i = 0;i<games.length;i++)
 				buffer.writeByte(games[i].ordinal());
 		}
-		
+
 		buffer.writeString(serverId);
 		buffer.writeBoolean(visiable);
 		buffer.writeByte(state.ordinal());
@@ -58,7 +58,7 @@ public class PacketOutServerStatus extends Packet{
 				buffer.writeString(s);
 		}
 	}
-	
+
 	@Override
 	public void read(DataBuffer buffer) {
 		this.action = Action.values()[buffer.readByte()];
@@ -69,7 +69,7 @@ public class PacketOutServerStatus extends Packet{
 			for(int i = 0;i<games.length;i++)
 				games[i] = GameType.values()[buffer.readByte()];
 		}
-		
+
 		this.serverId = buffer.readString();
 		this.visiable = buffer.readBoolean();
 		this.state = GameState.values()[buffer.readByte()];
