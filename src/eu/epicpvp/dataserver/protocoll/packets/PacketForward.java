@@ -31,7 +31,7 @@ public class PacketForward extends Packet{
 		this.target = target;
 
 		if(target == null)
-			throw new NullPointerException();
+			throw new NullPointerException("PacketForward target is null");
 	}
 
 	public PacketForward(ClientType target,Packet packet){
@@ -47,7 +47,7 @@ public class PacketForward extends Packet{
 		this.ctarget = target;
 
 		if(ctarget == null)
-			throw new NullPointerException();
+			throw new NullPointerException("PacketForward ctarget is null");
 	}
 
 
