@@ -20,7 +20,7 @@ public class PacketInBanPlayer extends Packet{
 	private long end;
 	private int level;
 
-	private String reson;
+	private String reason;
 
 	@Override
 	public void write(DataBuffer buffer) {
@@ -32,7 +32,7 @@ public class PacketInBanPlayer extends Packet{
 		buffer.writeString(bannerUuid);
 		buffer.writeLong(end);
 		buffer.writeInt(level);
-		buffer.writeString(reson);
+		buffer.writeString(reason);
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class PacketInBanPlayer extends Packet{
 		bannerUuid = buffer.readString();
 		end = buffer.readLong();
 		level = buffer.readInt();
-		reson = buffer.readString();
+		reason = buffer.readString();
 	}
 
 }
