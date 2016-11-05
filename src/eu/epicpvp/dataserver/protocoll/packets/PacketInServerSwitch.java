@@ -13,6 +13,7 @@ public class PacketInServerSwitch extends Packet {
 	@Getter
 	private String server;
 
+	@Override
 	public void read(DataBuffer buffer) {
 		player = buffer.readInt();
 		server = buffer.readString();
